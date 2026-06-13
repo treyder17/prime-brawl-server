@@ -1,6 +1,6 @@
-# Brawl Stars v26.184 — Local Server Emulator
+# Prime Brawl v26.184 — Local Server Emulator
 
-A personal-use Python server emulator for **Brawl Stars version 26.184**,
+A personal-use Python server emulator for **Prime Brawl version 26.184**,
 designed to run on your own machine and connect to a patched Android client.
 
 > ⚠️ **For personal, offline, educational use only.**  
@@ -121,7 +121,7 @@ You will see something like this:
 
 ```
   ╔══════════════════════════════════════════════════════╗
-  ║    ██████╗ ███████╗   Brawl Stars                    ║
+  ║    ██████╗ ███████╗   Prime Brawl                    ║
   ║    ██╔══██╗██╔════╝   v26.184 Server Emulator        ║
   ╚══════════════════════════════════════════════════════╝
 
@@ -238,7 +238,7 @@ adb install ClassicBrawl_patched-aligned-debugSigned.apk
 
 1. Start `python main.py` on your computer.
 2. Make sure your Android device is on the **same Wi-Fi** as your computer.
-3. Launch the patched Brawl Stars APK.
+3. Launch the patched Prime Brawl APK.
 4. The game will connect to your server automatically.
 5. You should see `[+] Client connected` in the server console.
 
@@ -339,6 +339,6 @@ brawl-server/
 
 Protocol research: [Classic-Brawl](https://github.com/PhoenixFire6934/Classic-Brawl),
 [bs-proxy/bs-messages](https://github.com/bs-proxy/bs-messages),
-[VitalikObject/brawl-stars-server](https://github.com/VitalikObject/brawl-stars-server).
+[VitalikObject/prime-brawl-server](https://github.com/VitalikObject/prime-brawl-server).
 
 This emulator is independent, built from scratch for personal local use.
