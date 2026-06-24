@@ -117,3 +117,68 @@ class PiranhaMessage:
         """Sendet die Nachricht an den Client"""
         if session:
             session.send(self)
+
+
+# ========== PRIME BRAWL - PIRANHAMESSAGE BASIS-KLASSE ==========
+class PiranhaMessage:
+    """Basis-Klasse für alle Netzwerk-Nachrichten"""
+    
+    def __init__(self):
+        self.id = 0
+        self.length = 0
+        self.payload = b""
+        self.read_pos = 0
+    
+    def encode(self):
+        return self.payload
+    
+    def decode(self, data):
+        self.payload = data
+        self.read_pos = 0
+    
+    def read_string(self):
+        if self.read_pos >= len(self.payload):
+            return ""
+        length = self.payload[self.read_pos]
+        self.read_pos += 1
+        if length > 0:
+            value = self.payload[self.read_pos:self.read_pos+length].decode('utf-8', errors='ignore')
+            self.read_pos += length
+            return value
+        return ""
+    
+    def write_string(self, value):
+        if value is None:
+            value = ""
+        encoded = value.encode('utf-8')
+        self.payload += len(encoded).to_bytes(1, 'big') + encoded
+    
+    def read_int(self):
+        if self.read_pos + 4 > len(self.payload):
+            return 0
+        value = int.from_bytes(self.payload[self.read_pos:self.read_pos+4], 'big')
+        self.read_pos += 4
+        return value
+    
+    def write_int(self, value):
+        self.payload += value.to_bytes(4, 'big')
+    
+    def read_bool(self):
+        if self.read_pos >= len(self.payload):
+            return False
+        value = self.payload[self.read_pos] == 1
+        self.read_pos += 1
+        return value
+    
+    def write_bool(self, value):
+        self.payload += (1 if value else 0).to_bytes(1, 'big')
+    
+    def read_byte(self):
+        if self.read_pos >= len(self.payload):
+            return 0
+        value = self.payload[self.read_pos]
+        self.read_pos += 1
+        return value
+    
+    def write_byte(self, value):
+        self.payload += value.to_bytes(1, 'big')
